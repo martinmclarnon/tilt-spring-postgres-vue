@@ -1,0 +1,16 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    
+    <!-- Insert records into the TagType table -->
+    <changeSet id="insert" author="on-boarding-seed">
+        <sql>
+            <![CDATA[
+                INSERT INTO blog (post) VALUES ('Der Große Gatsby von F. Scott Fitzgerald, 978-0-7432-7356-5, veröffentlicht von Scribner, auf Englisch geschrieben, erstmals veröffentlicht am 10. April 1925, mit ca. 100 Seiten.');
+                INSERT INTO blog (post) VALUES ('Wer die Nachtigall stört von Harper Lee, 978-0-06-112008-4, veröffentlicht von HarperCollins, auf Englisch geschrieben, erstmals veröffentlicht am 11. Juli 1960, mit ca. 336 Seiten.');
+                INSERT INTO blog (post) VALUES ('Ein Vogel zu töten von Lee, 978-0-06-112008-4, veröffentlicht von Tollins, auf Englisch geschrieben, erstmals veröffentlicht am 11. Juli 1969, mit ca. 336 Seiten.');
+                INSERT INTO blog (post) VALUES ('Eine Biene fliegen zu lassen von Leap, 978-0-06-112236-4, veröffentlicht von Tollins, auf Französisch geschrieben, erstmals veröffentlicht am 11. September 1947, mit ca. 356 Seiten.');
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

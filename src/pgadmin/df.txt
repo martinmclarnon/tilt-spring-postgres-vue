@@ -1,0 +1,16 @@
+# Use the official pgAdmin 4 image as the base image
+FROM dpage/pgadmin4
+
+# Set environment variables
+ENV PGADMIN_DEFAULT_EMAIL=email@example.com
+ENV PGADMIN_DEFAULT_PASSWORD=pgadminpassword
+
+# Expose port 80 for the pgAdmin web interface
+EXPOSE 80
+
+
+
+docker build -t pgadmin4-with-nginx . \
+&& \
+docker run -p 8080:80 -p 8443:443 pgadmin4-with-nginx
+

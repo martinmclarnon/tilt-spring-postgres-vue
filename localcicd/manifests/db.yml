@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  namespace: bookapp-local-cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db-container
+          image: db:latest
+          ports:
+            - containerPort: 5432
+          resources:
+            limits:
+              cpu: "500m" # 1 CPU core
+              memory: 512Mi # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
+            requests:
+              cpu: "100m"  # 0.75 CPU cores
+              memory: "128Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
+          env:
+            - name: 'POSTGRES_DB'
+              value: 'restful-api'
+            - name: 'POSTGRES_USER'
+              value: 'postgres'
+            - name: 'POSTGRES_PASSWORD'
+              value: 'admin'           
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: bookapp-local-cicd
+spec:
+  selector:
+    app: db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

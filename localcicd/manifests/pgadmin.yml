@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin
+  namespace: bookapp-local-cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+        - name: pgadmin-container
+          image: pgadmin:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "500m" # 1 CPU core
+              memory: 512Mi # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
+            requests:
+              cpu: "100m"  # 0.75 CPU cores
+              memory: "128Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: "email@example.com"
+            - name: PGADMIN_DEFAULT_PASSWORD
+              value: "pgadminpassword"

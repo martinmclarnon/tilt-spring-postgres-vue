@@ -1,0 +1,17 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+    
+    <!-- Insert records into the TagType table -->
+    <changeSet id="insert" author="on-boarding-seed">
+        <sql>
+
+            <![CDATA[
+                INSERT INTO publisher (name) VALUES ('-fr Scribner');
+                INSERT INTO publisher (name) VALUES ('-fr HarperCollins');
+                INSERT INTO publisher (name) VALUES ('-fr Tollins');
+            ]]>
+            
+        </sql>
+    </changeSet>
+</databaseChangeLog>
