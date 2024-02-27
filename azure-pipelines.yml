@@ -21,7 +21,7 @@ stages:
     - task: Gradle@3
       inputs:
         gradleWrapperFile: 'gradlew'
-        workingDirectory: '$(Build.SourcesDirectory)/src/api'
+        workingDirectory: '$(system.defaultWorkingDirectory)/src/api'
         tasks: 'build'
         publishJUnitResults: true
         testResultsFiles: '**/TEST-*.xml'
