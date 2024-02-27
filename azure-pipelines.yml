@@ -9,15 +9,22 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    workingDirectory: '$(Build.SourcesDirectory)/src/api/gradle/wrapper'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Gradle@3
+      inputs:
+        gradleWrapperFile: 'gradlew'
+        workingDirectory: '$(Build.SourcesDirectory)/src/api'
+        tasks: 'build'
+        publishJUnitResults: true
+        testResultsFiles: '**/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        sonarQubeRunAnalysis: false
+        spotBugsAnalysis: false
