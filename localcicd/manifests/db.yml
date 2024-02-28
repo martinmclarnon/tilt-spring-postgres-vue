@@ -20,18 +20,18 @@ spec:
             - containerPort: 5432
           resources:
             limits:
-              cpu: "500m" # 1 CPU core
-              memory: 512Mi # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
+              cpu: "100m" # 1000m = 1 CPU core
+              memory: "128Mi" # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
             requests:
-              cpu: "100m"  # 0.75 CPU cores
-              memory: "128Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
+              cpu: "50m"  # 0.75 CPU cores
+              memory: "64Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
           env:
             - name: 'POSTGRES_DB'
-              value: 'restful-api'
+              value: 'library'
             - name: 'POSTGRES_USER'
-              value: 'postgres'
+              value: 'dbusername'
             - name: 'POSTGRES_PASSWORD'
-              value: 'admin'           
+              value: 'dbpassword'           
 ---
 apiVersion: v1
 kind: Service
