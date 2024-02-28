@@ -38,7 +38,7 @@ def frontend_service():
     # Specify the Kubernetes manifest for the Frontend deployment
     k8s_yaml('manifests/frontend.yml')
     # Assign port
-    k8s_resource('frontend', port_forwards='8081:8081', resource_deps=['db-deployment','api'])
+    k8s_resource('frontend', port_forwards='8081:80', resource_deps=['db-deployment','api'])
 
 # Function to build and deploy:pgAdmin service
 # def pgadmin_service():
