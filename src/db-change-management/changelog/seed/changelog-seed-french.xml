@@ -5,8 +5,8 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
     <!-- Include individual changelog files -->
-    <include file="./french/french-data-blog.xml" />
-    <include file="./french/french-data-book.xml" />
-    <include file="./french/french-data-publisher.xml" />
+    <include file="/french/french-data-blog.xml" />
+    <include file="/french/french-data-book.xml" />
+    <include file="/french/french-data-publisher.xml" />
 
 </databaseChangeLog>
