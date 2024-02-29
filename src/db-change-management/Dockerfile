@@ -5,4 +5,5 @@ FROM liquibase/liquibase:latest
 COPY ./changelog/. /liquibase/changelog
 
 # Command to execute when the container starts
-CMD ["update"]
+# CMD ["update", "--help"]
+CMD liquibase --sql-log-level=INFO --log-level=INFO update && tail -f /dev/null
