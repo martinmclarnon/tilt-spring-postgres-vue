@@ -5,12 +5,12 @@
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
 
     <!-- Include individual changelog files -->
-    <include file="/schema/tables/table-address.xml" context="standard"/>
-    <include file="/schema/tables/table-blog.xml"  context="standard"/>
-    <include file="/schema/tables/table-book.xml" />
-    <include file="/schema/tables/table-customer.xml" context="standard"/>
-    <include file="/schema/tables/table-invoice.xml" context="standard"/>
-    <include file="/schema/tables/table-order.xml" context="standard"/>
-    <include file="/schema/tables/table-publisher.xml" context="standard"/>
+    <include file="./tables/table-address.xml" context="standard"/>
+    <include file="./tables/table-blog.xml"  context="standard"/>
+    <include file="./tables/table-book.xml" />
+    <include file="./tables/table-customer.xml" context="standard"/>
+    <include file="./tables/table-invoice.xml" context="standard"/>
+    <include file="./tables/table-order.xml" context="standard"/>
+    <include file="./tables/table-publisher.xml" context="standard"/>
     
 </databaseChangeLog>
