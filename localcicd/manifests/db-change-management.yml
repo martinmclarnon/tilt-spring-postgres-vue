@@ -33,4 +33,4 @@ spec:
             - name: LIQUIBASE_LOG_LEVEL
               value: "INFO"
             - name: LIQUIBASE_SEARCH_PATH
-              value: "changelog/,changelog/schema/,changelog/schema/tables/, changelog/seed/"
+              value: "changelog/,changelog/schema/,changelog/schema/tables/,changelog/seed/,changelog/seed/english/,changelog/seed/french/,changelog/seed/german/"

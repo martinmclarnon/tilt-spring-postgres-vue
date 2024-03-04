@@ -6,7 +6,7 @@
 
     <!-- Include individual changelog files -->
     <!-- tables -->
-    <include file="./schema/changelog-schema-tables.xml" />
+    <include file="/changelog-schema-tables.xml" />
     <!-- english seed data -->
-    <include file="./seed/changelog-seed-english.xml" />
+    <include file="/changelog-seed-english.xml" />
 </databaseChangeLog>
