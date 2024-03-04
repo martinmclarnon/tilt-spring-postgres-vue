@@ -3,7 +3,12 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
     
-    <changeSet author="on-boarding-seed" context="standard" id="create-table-invoice">
+    <changeSet author="on-boarding-seed" context="standard" id="create-table-invoice">       
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="invoice"/>
+            </not>
+        </preConditions>
         <createTable tableName="invoice">
             <column autoIncrement="true" computed="false" name="id" type="int">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_invoice"/>
