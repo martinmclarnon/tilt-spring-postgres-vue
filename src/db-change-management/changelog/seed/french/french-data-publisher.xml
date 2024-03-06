@@ -7,9 +7,9 @@
         <sql>
 
             <![CDATA[
-                INSERT INTO publisher (name) VALUES ('-fr Scribner');
-                INSERT INTO publisher (name) VALUES ('-fr HarperCollins');
-                INSERT INTO publisher (name) VALUES ('-fr Tollins');
+                INSERT INTO publisher (id,name) VALUES (1,'-fr Scribner');
+                INSERT INTO publisher (id,name) VALUES (2,'-fr HarperCollins');
+                INSERT INTO publisher (id,name) VALUES (3,'-fr Tollins');
             ]]>
             
         </sql>
