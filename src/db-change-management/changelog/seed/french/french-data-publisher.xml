@@ -7,9 +7,9 @@
         <sql>
 
             <![CDATA[
-                INSERT INTO publisher (id,name) VALUES (gen_random_uuid(),'-fr Scribner');
-                INSERT INTO publisher (id,name) VALUES (gen_random_uuid(),'-fr HarperCollins');
-                INSERT INTO publisher (id,name) VALUES (gen_random_uuid(),'-fr Tollins');
+                INSERT INTO publisher (id,name) VALUES ('d148ddbd-951c-499d-93fd-04a787c938f1','-fr Scribner');
+                INSERT INTO publisher (id,name) VALUES ('a148ddbd-951c-499d-93fd-04a787c938f1','-fr HarperCollins');
+                INSERT INTO publisher (id,name) VALUES ('f148ddbd-951c-499d-93fd-04a787c938f1','-fr Tollins');
             ]]>)
             
         </sql>
