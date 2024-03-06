@@ -7,10 +7,10 @@
         <sql>
 
             <![CDATA[
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('The Great Gatsby','F. Scott Fitzgerald','978-0-7432-7356-5','Scribner','English','1925-04-10','100','The Great Gatsby is a classic American novel that ...') ON CONFLICT (book) DO NOTHING;
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('To Kill a Mockingbird','Harper Lee','978-0-06-112008-4','HarperCollins','English','1960-07-11','336','To Kill a Mockingbird is a powerful novel that confronts ...') ON CONFLICT (book) DO NOTHING;
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('To Kill a bird','Lee','978-0-06-112008-4','Tollins','English','1969-07-11','336','To Kill a bird ...') ON CONFLICT (book) DO NOTHING;
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('To fly a bee','Leap','978-0-06-112236-4','Tollins','French','1947-09-11','356','To be ...') ON CONFLICT (book) DO NOTHING;
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6d8de907-5cff-42fb-941d-edd658d483f4','The Great Gatsby','F. Scott Fitzgerald','978-0-7432-7356-5','Scribner','English','1925-04-10','100','The Great Gatsby is a classic American novel that ...') ON CONFLICT (book) DO NOTHING;
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6d8de907-5cff-42fb-941d-edd658d483f5','To Kill a Mockingbird','Harper Lee','978-0-06-112008-4','HarperCollins','English','1960-07-11','336','To Kill a Mockingbird is a powerful novel that confronts ...') ON CONFLICT (book) DO NOTHING;
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6d8de907-5cff-42fb-941d-edd658d483f6','To Kill a bird','Lee','978-0-06-112008-4','Tollins','English','1969-07-11','336','To Kill a bird ...') ON CONFLICT (book) DO NOTHING;
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6d8de907-5cff-42fb-941d-edd658d483f7','To fly a bee','Leap','978-0-06-112236-4','Tollins','French','1947-09-11','356','To be ...') ON CONFLICT (book) DO NOTHING;
             ]]>
             
         </sql>

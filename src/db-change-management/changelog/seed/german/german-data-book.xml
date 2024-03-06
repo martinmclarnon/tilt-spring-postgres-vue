@@ -7,10 +7,10 @@
         <sql>
 
             <![CDATA[
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('-de The Great Gatsby','F. Scott Fitzgerald','978-0-7432-7356-5','Scribner','English','1925-04-10','100','The Great Gatsby is a classic American novel that ...');
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('-de To Kill a Mockingbird','Harper Lee','978-0-06-112008-4','HarperCollins','English','1960-07-11','336','To Kill a Mockingbird is a powerful novel that confronts ...');
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('-de To Kill a bird','Lee','978-0-06-112008-4','Tollins','English','1969-07-11','336','To Kill a bird ...');
-                INSERT INTO book (title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('-de To fly a bee','Leap','978-0-06-112236-4','Tollins','French','1947-09-11','356','To be ...');
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6f0bc256-a34d-475e-8c61-ef2a6eeb5eda','-de The Great Gatsby','F. Scott Fitzgerald','978-0-7432-7356-5','Scribner','English','1925-04-10','100','The Great Gatsby is a classic American novel that ...');
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6f0bc256-a34d-475e-8c61-ef2a6eeb5edb','-de To Kill a Mockingbird','Harper Lee','978-0-06-112008-4','HarperCollins','English','1960-07-11','336','To Kill a Mockingbird is a powerful novel that confronts ...');
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6f0bc256-a34d-475e-8c61-ef2a6eeb5edc','-de To Kill a bird','Lee','978-0-06-112008-4','Tollins','English','1969-07-11','336','To Kill a bird ...');
+                INSERT INTO book (id,title,author,isbn,publisher,language_written_in,published_date,number_of_pages,review) VALUES ('6f0bc256-a34d-475e-8c61-ef2a6eeb5edd','-de To fly a bee','Leap','978-0-06-112236-4','Tollins','French','1947-09-11','356','To be ...');
             ]]>
             
         </sql>
