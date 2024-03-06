@@ -7,10 +7,10 @@
         <sql>
 
             <![CDATA[
-                INSERT INTO publisher (id,name) VALUES (1,'-fr Scribner');
-                INSERT INTO publisher (id,name) VALUES (2,'-fr HarperCollins');
-                INSERT INTO publisher (id,name) VALUES (3,'-fr Tollins');
-            ]]>
+                INSERT INTO publisher (id,name) VALUES (gen_random_uuid(),'-fr Scribner');
+                INSERT INTO publisher (id,name) VALUES (gen_random_uuid(),'-fr HarperCollins');
+                INSERT INTO publisher (id,name) VALUES (gen_random_uuid(),'-fr Tollins');
+            ]]>)
             
         </sql>
     </changeSet>

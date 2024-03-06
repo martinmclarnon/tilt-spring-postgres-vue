@@ -10,7 +10,7 @@
             </not>
         </preConditions>
         <createTable tableName="customer">
-            <column autoIncrement="true" computed="false" name="id" type="int">
+            <column autoIncrement="false" computed="false" name="id" type="uuid">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_customer"/>
             </column>
             <column computed="false" name="customer_name" type="nvarchar(50)">

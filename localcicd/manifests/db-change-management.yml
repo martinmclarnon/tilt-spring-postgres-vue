@@ -20,11 +20,11 @@ spec:
             - containerPort: 5432  # Adjust the port if needed
           resources:
             limits:
-              cpu: "100m" # 1000m = 1 CPU core
-              memory: "128Mi" # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
+              cpu: "200m" # 1000m = 1 CPU core
+              memory: "256Mi" # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
             requests:
-              cpu: "50m"  # 0.75 CPU cores
-              memory: "64Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes  
+              cpu: "150m"  # 0.75 CPU cores
+              memory: "128Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes  
           env:
             - name: LIQUIBASE_COMMAND_URL
               value: "jdbc:postgresql://db:5432/library?user=dbusername&password=dbpassword"

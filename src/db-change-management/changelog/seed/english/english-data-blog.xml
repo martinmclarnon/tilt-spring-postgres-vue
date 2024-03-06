@@ -6,10 +6,10 @@
     <changeSet id="insert" author="on-boarding-seed">
         <sql>
             <![CDATA[
-                INSERT INTO blog (id,post) VALUES (1,'The Great Gatsby by F. Scott Fitzgerald, 978-0-7432-7356-5, published by Scribner, written in English, first published 1925-04-10, with approx. 100 pages.') ON CONFLICT (id) DO NOTHING;
-                INSERT INTO blog (id,post) VALUES (2,'To Kill a Mockingbird by Harper Lee, 978-0-06-112008-4, published by HarperCollins, written in English, first published 1960-07-11, with approx. 336 pages.') ON CONFLICT (id) DO NOTHING;
-                INSERT INTO blog (id,post) VALUES (3,'To Kill a bird by Lee, 978-0-06-112008-4, published by Tollins, written in English, first published 1969-07-11, with approx. 336 pages.') ON CONFLICT (id) DO NOTHING;
-                INSERT INTO blog (id,post) VALUES (4,'To fly a bee by Leap, 978-0-06-112236-4, published by Tollins written in French, first published 1947-09-11, with approx. 356 pages.') ON CONFLICT (id) DO NOTHING;
+                INSERT INTO blog (id,post) VALUES (gen_random_uuid(),'The Great Gatsby by F. Scott Fitzgerald, 978-0-7432-7356-5, published by Scribner, written in English, first published 1925-04-10, with approx. 100 pages.') ON CONFLICT (id) DO NOTHING;
+                INSERT INTO blog (id,post) VALUES (gen_random_uuid(),'To Kill a Mockingbird by Harper Lee, 978-0-06-112008-4, published by HarperCollins, written in English, first published 1960-07-11, with approx. 336 pages.') ON CONFLICT (id) DO NOTHING;
+                INSERT INTO blog (id,post) VALUES (gen_random_uuid(),'To Kill a bird by Lee, 978-0-06-112008-4, published by Tollins, written in English, first published 1969-07-11, with approx. 336 pages.') ON CONFLICT (id) DO NOTHING;
+                INSERT INTO blog (id,post) VALUES (gen_random_uuid(),'To fly a bee by Leap, 978-0-06-112236-4, published by Tollins written in French, first published 1947-09-11, with approx. 356 pages.') ON CONFLICT (id) DO NOTHING;
             ]]>
         </sql>
     </changeSet>
