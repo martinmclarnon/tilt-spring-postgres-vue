@@ -20,13 +20,26 @@ spec:
             - containerPort: 80
           resources:
             limits:
-              cpu: "100m" # 1000m = 1 CPU core
-              memory: "128Mi" # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
+              cpu: "300m" # 1000m = 1 CPU core
+              memory: "512Mi" # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
             requests:
-              cpu: "50m"  # 0.75 CPU cores
-              memory: "64Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
+              cpu: "250m"  # 0.75 CPU cores
+              memory: "256Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
           env:
             - name: PGADMIN_DEFAULT_EMAIL
               value: "email@example.com"
             - name: PGADMIN_DEFAULT_PASSWORD
               value: "pgadminpassword"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin
+  namespace: bookapp-local-cicd
+spec:
+  selector:
+    app: pgadmin
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 80
