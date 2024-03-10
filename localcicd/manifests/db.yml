@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db
-  namespace: bookapp-local-cicd
+  namespace: acmebookstore-local-cicd
 spec:
   replicas: 1
   selector:
@@ -27,7 +27,7 @@ spec:
               memory: "64Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
           env:
             - name: 'POSTGRES_DB'
-              value: 'library'
+              value: 'acmebookstoreplatform'
             - name: 'POSTGRES_USER'
               value: 'dbusername'
             - name: 'POSTGRES_PASSWORD'
@@ -37,7 +37,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: db
-  namespace: bookapp-local-cicd
+  namespace: acmebookstore-local-cicd
 spec:
   selector:
     app: db

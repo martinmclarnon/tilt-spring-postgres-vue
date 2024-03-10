@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db-change-management
-  namespace: bookapp-local-cicd
+  namespace: acmebookstore-local-cicd
 spec:
   replicas: 1
   selector:
@@ -27,10 +27,10 @@ spec:
               memory: "128Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes  
           env:
             - name: LIQUIBASE_COMMAND_URL
-              value: "jdbc:postgresql://db:5432/library?user=dbusername&password=dbpassword"
+              value: "jdbc:postgresql://db:5432/acmebookstoreplatform?user=dbusername&password=dbpassword"
             - name: LIQUIBASE_COMMAND_CHANGELOG_FILE
-              value: "changelog-master.xml"
+              value: "changelog-master-understory.xml"
             - name: LIQUIBASE_LOG_LEVEL
               value: "INFO"
             - name: LIQUIBASE_SEARCH_PATH
-              value: "changelog/,changelog/schema/,changelog/schema/tables/,changelog/seed/,changelog/seed/english/,changelog/seed/french/,changelog/seed/german/"
+              value: "changelog/,changelog/schema/,changelog/schema/tables/,changelog/seed/,changelog/seed/emergent/,changelog/seed/canopy/,changelog/seed/understory/"

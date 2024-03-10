@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: bookapp-local-cicd
+  namespace: acmebookstore-local-cicd
 spec:
   replicas: 1
   selector:
