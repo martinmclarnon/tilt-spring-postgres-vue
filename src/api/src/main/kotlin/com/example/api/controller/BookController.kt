@@ -7,7 +7,7 @@ import com.example.api.service.BookService
 @RestController
 class BookController(val bookService: BookService) {
 
-    @CrossOrigin(origins = ["http://localhost:8081"])
+    @CrossOrigin(origins = ["http://localhost:8081","http://canopy-lab-vm.uksouth.cloudapp.azure.com:8080"])
     @GetMapping(
         value = ["/api/v1/books"],
         produces = ["application/json"]
