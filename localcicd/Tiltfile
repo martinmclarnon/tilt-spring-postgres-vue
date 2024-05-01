@@ -11,7 +11,7 @@ def db_service():
     # Specify the Kubernetes manifest for the API deployment
     k8s_yaml('manifests/db.yml')
     # Assign port
-    k8s_resource('db', port_forwards='5432:5432')
+    k8s_resource('db', port_forwards='5432:5432', labels="db")
 
 # Function to build and deploy: liquibase update for db service
 def db_change_management_service():
@@ -20,7 +20,7 @@ def db_change_management_service():
     # Specify the Kubernetes manifest for the deployment
     k8s_yaml('manifests/db-change-management.yml')
     # Assign port
-    k8s_resource('db-change-management', port_forwards='5430:5432', resource_deps=['db'])
+    k8s_resource('db-change-management', port_forwards='5430:5432', resource_deps=['db'], labels="db")
 
 # Function to build and deploy:API service
 def api_service():
@@ -29,7 +29,7 @@ def api_service():
     # Specify the Kubernetes manifest for the API deployment
     k8s_yaml('manifests/api.yml')
     # Assign port
-    k8s_resource('api', port_forwards='8080:8080', resource_deps=['db'])
+    k8s_resource('api', port_forwards='8080:8080', resource_deps=['db'], labels="service")
 
 # Function to build and deploy: Frontend service
 def frontend_service():
@@ -38,7 +38,7 @@ def frontend_service():
     # Specify the Kubernetes manifest for the Frontend deployment
     k8s_yaml('manifests/frontend.yml')
     # Assign port
-    k8s_resource('frontend', port_forwards='8081:80', resource_deps=['db-deployment','api'])
+    k8s_resource('frontend', port_forwards='8081:80', resource_deps=['db-deployment','api'], labels="web")
 
 # Function to build and deploy:pgAdmin service
 def pgadmin_service():
@@ -47,7 +47,7 @@ def pgadmin_service():
     # Specify the Kubernetes manifest for the pgAdmin deployment
     k8s_yaml('manifests/pgadmin.yml')
     # Assign port
-    k8s_resource('pgadmin', port_forwards='8082:80', resource_deps=['frontend'])
+    k8s_resource('pgadmin', port_forwards='8082:80', resource_deps=['frontend'], labels="utility")
 
 
 create_namespace_service()
