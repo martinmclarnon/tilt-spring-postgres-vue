@@ -7,9 +7,9 @@ import com.example.api.service.BookService
 @RestController
 class BookController(val bookService: BookService) {
 
-    @CrossOrigin(origins = ["http://localhost:8081","http://canopy-lab-vm.uksouth.cloudapp.azure.com"])
+    @CrossOrigin(origins = ["http://localhost:8081"])
     @GetMapping(
-        value = ["/api/v1/books"],
+        value = ["/v1/b"],
         produces = ["application/json"]
     )
     fun listBooks(@RequestParam(value = "size", defaultValue = "10") size: Int,
