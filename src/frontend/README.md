@@ -3,6 +3,8 @@
 ## Project setup
 ```
 npm install
+
+npm install axios --save
 ```
 
 ### Compiles and hot-reloads for development
