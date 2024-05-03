@@ -9,7 +9,7 @@ class BookController(val bookService: BookService) {
 
     @CrossOrigin(origins = ["http://localhost:8082"])
     @GetMapping(
-        value = ["/v1/be6d8e56"],
+        value = ["/v1/ad6b8f65"],
         produces = ["application/json"]
     )
     fun listBooks(@RequestParam(value = "size", defaultValue = "10") size: Int,

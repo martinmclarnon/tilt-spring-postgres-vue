@@ -17,7 +17,7 @@ spec:
         - name: frontend-container
           image: frontend:latest
           ports:
-            - containerPort: 8081
+            - containerPort: 8082
           resources:
             limits:
               cpu: "100m" # 1000m = 1 CPU core

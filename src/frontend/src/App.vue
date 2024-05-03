@@ -12,7 +12,9 @@
 import axios from 'axios';
 import Book from './components/BookComponent.vue';
 
+const BOOKS_BASE_URL = process.env.VUE_APP_BASE_URL;
 const BOOKS_ENDPOINT = process.env.VUE_APP_BOOKS_ENDPOINT;
+const booklist = `${BOOKS_BASE_URL}${BOOKS_ENDPOINT}`;
 
 console.log(BOOKS_ENDPOINT);
 
@@ -29,7 +31,7 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get(BOOKS_ENDPOINT);
+      const response = await axios.get(booklist);
       this.books = response.data.data;
     } catch (error) {
       console.error('Error fetching data:', error);

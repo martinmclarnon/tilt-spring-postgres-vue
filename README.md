@@ -16,9 +16,8 @@ To connect the PostgreSQL Db container to the pgAdmin4 container, use the follow
 ```
 name: container-postgresdb
 host: host.docker.internal
-database: restful-api
-user: postgres
-password: admin
+user: dbusername
+password: dbpassword
 ```
 
 ### Frontend ###
@@ -89,3 +88,12 @@ https://kind.sigs.k8s.io
 ```
 https://tilt.dev
 ```
+
+
+### API Mapping: ###
+http://my.domain.com/1f7351128682/v1/ad6b8f65 = GET bff/bookcontroller/listbooks
+http://my.domain.com/7d5375538789/v1/be6d8e56 = GET api/bookcontroller/listbooks
+
+
+http://localhost:8080/1f7351128682/v1/ad6b8f65 = GET bff/bookcontroller/listbooks
+http://localhost:8081/7d5375538789/v1/be6d8e56 = GET api/bookcontroller/listbooks
