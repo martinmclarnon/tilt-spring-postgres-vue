@@ -11,6 +11,9 @@ COPY package*.json ./
 RUN npm install
 RUN npm install axios --save
 
+# Copy the environment file - make sure this file exists or the build will fail
+COPY .env.local ./
+
 # Copy the rest of the application
 COPY . .
 

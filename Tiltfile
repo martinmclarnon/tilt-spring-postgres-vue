@@ -29,7 +29,7 @@ def bff_service():
     # Specify the Kubernetes manifest for the BFF deployment
     k8s_yaml('./local-cicd-manifests/bff.yml')
     # Assign port
-    k8s_resource('bff', port_forwards='8080:8080', resource_deps=['db'], labels="service")
+    k8s_resource('bff', port_forwards='8080:8090', resource_deps=['db'], labels="service")
 
 # Function to build and deploy:API service
 def api_service():
@@ -38,7 +38,7 @@ def api_service():
     # Specify the Kubernetes manifest for the API deployment
     k8s_yaml('./local-cicd-manifests/api.yml')
     # Assign port
-    k8s_resource('api', port_forwards='8081:8080', resource_deps=['db'], labels="service")
+    k8s_resource('api', port_forwards='8081:8091', resource_deps=['db'], labels="service")
 
 # Function to build and deploy: Frontend service
 def frontend_service():
@@ -47,7 +47,7 @@ def frontend_service():
     # Specify the Kubernetes manifest for the Frontend deployment
     k8s_yaml('./local-cicd-manifests/frontend.yml')
     # Assign port
-    k8s_resource('frontend', port_forwards='8082:80', resource_deps=['db-deployment','api'], labels="web")
+    k8s_resource('frontend', port_forwards='8082:80', resource_deps=['db-deployment','bff'], labels="web")
 
 # Function to build and deploy:pgAdmin service
 def pgadmin_service():
@@ -65,4 +65,4 @@ db_change_management_service()
 bff_service()
 api_service()
 frontend_service()
-pgadmin_service()
+# pgadmin_service()

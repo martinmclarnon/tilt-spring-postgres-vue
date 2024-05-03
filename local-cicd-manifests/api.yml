@@ -17,7 +17,7 @@ spec:
         - name: api-container
           image: api:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 8091
           resources:
             limits:
               cpu: "300m" # 1000m = 1 CPU core
@@ -44,4 +44,4 @@ spec:
   ports:
     - protocol: TCP
       port: 8081
-      targetPort: 8080
+      targetPort: 8091
