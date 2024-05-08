@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bff-web-blog
+  namespace: acmebookstore-local-cicd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bff-web-blog
+  template:
+    metadata:
+      labels:
+        app: bff-web-blog
+    spec:
+      containers:
+        - name: bff-web-blog-container
+          image: bff-web-blog:latest
+          ports:
+            - containerPort: 8091
+          resources:
+            limits:
+              cpu: "300m" # 1000m = 1 CPU core
+              memory: "256Mi" # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes
+            requests:
+              cpu: "150m"  # 0.75 CPU cores
+              memory: "128Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://marketing-db:5432/marketing"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "dbusername"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "dbpassword"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bff-web-blog
+  namespace: acmebookstore-local-cicd
+spec:
+  selector:
+    app: bff-web-blog
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8091

@@ -5,64 +5,86 @@ def create_namespace_service():
     k8s_yaml('./local-cicd-manifests/namespace.yml')
 
 # Function to build and deploy: Database service
-def db_service():
+def marketing_db_service():
     # Build from Dockerfile
-    docker_build('db', context='./src/db', dockerfile='./src/db/Dockerfile')
+    docker_build('marketing-db', context='./src/marketing/persistent-storage/db', dockerfile='./src/marketing/persistent-storage/db/Dockerfile')
     # Specify the Kubernetes manifest for the API deployment
-    k8s_yaml('./local-cicd-manifests/db.yml')
+    k8s_yaml('./local-cicd-manifests/marketing-db.yml')
     # Assign port
-    k8s_resource('db', port_forwards='5432:5432', labels="db")
+    k8s_resource('marketing-db', port_forwards='5432:5432', labels="persistent-storage")
 
 # Function to build and deploy: liquibase update for db service
-def db_change_management_service():
+def marketing_db_change_management_service():
     # Build from Dockerfile
-    docker_build('db-change-management', context='./src/db-change-management', dockerfile='./src/db-change-management/Dockerfile')
+    docker_build('marketing-db-change-management', context='./src/marketing/persistent-storage/db-change-management', dockerfile='./src/marketing/persistent-storage/db-change-management/Dockerfile')
     # Specify the Kubernetes manifest for the deployment
-    k8s_yaml('./local-cicd-manifests/db-change-management.yml')
+    k8s_yaml('./local-cicd-manifests/marketing-db-change-management.yml')
     # Assign port
-    k8s_resource('db-change-management', port_forwards='5430:5432', resource_deps=['db'], labels="db")
+    k8s_resource('marketing-db-change-management', port_forwards='5430:5432', resource_deps=['marketing-db'], labels="persistent-storage")
 
-# Function to build and deploy:BFF service
-def bff_service():
+# Function to build and deploy: Database service
+def store_db_service():
     # Build from Dockerfile
-    docker_build('bff', context='./src/bff', dockerfile='./src/bff/Dockerfile')
-    # Specify the Kubernetes manifest for the BFF deployment
-    k8s_yaml('./local-cicd-manifests/bff.yml')
+    docker_build('store-db', context='./src/store/persistent-storage/db', dockerfile='./src/store/persistent-storage/db/Dockerfile')
+    # Specify the Kubernetes manifest for the API deployment
+    k8s_yaml('./local-cicd-manifests/store-db.yml')
     # Assign port
-    k8s_resource('bff', port_forwards='8080:8090', resource_deps=['db'], labels="service")
+    k8s_resource('store-db', port_forwards='5433:5432', labels="persistent-storage")
+
+# Function to build and deploy: liquibase update for db service
+def store_db_change_management_service():
+    # Build from Dockerfile
+    docker_build('store-db-change-management', context='./src/store/persistent-storage/db-change-management', dockerfile='./src/store/persistent-storage/db-change-management/Dockerfile')
+    # Specify the Kubernetes manifest for the deployment
+    k8s_yaml('./local-cicd-manifests/store-db-change-management.yml')
+    # Assign port
+    k8s_resource('store-db-change-management', port_forwards='5431:5432', resource_deps=['store-db'], labels="persistent-storage")
+
+# # Function to build and deploy:BFF service
+def bff_web_blog_service():
+    # Build from Dockerfile
+    docker_build('bff-web-blog', context='./src/marketing/bff-blog', dockerfile='./src/marketing/bff-blog/Dockerfile')
+    # Specify the Kubernetes manifest for the API deployment
+    k8s_yaml('./local-cicd-manifests/bff-web-blog.yml')
+    # Assign port
+    k8s_resource('bff-web-blog', port_forwards='8081:8091', resource_deps=['marketing-db'], labels="service")
 
 # Function to build and deploy:API service
-def api_service():
+def bff_web_inventory_service():
     # Build from Dockerfile
-    docker_build('api', context='./src/api', dockerfile='./src/api/Dockerfile')
+    docker_build('bff-web-inventory', context='./src/store/bff-inventory', dockerfile='./src/store/bff-inventory/Dockerfile')
     # Specify the Kubernetes manifest for the API deployment
-    k8s_yaml('./local-cicd-manifests/api.yml')
+    k8s_yaml('./local-cicd-manifests/bff-web-inventory.yml')
     # Assign port
-    k8s_resource('api', port_forwards='8081:8091', resource_deps=['db'], labels="service")
+    k8s_resource('bff-web-inventory', port_forwards='8080:8090', resource_deps=['store-db'], labels="service")
 
-# Function to build and deploy: Frontend service
-def frontend_service():
+# # Function to build and deploy: Frontend service
+def store_frontend_service():
     # Build from Dockerfile
-    docker_build('frontend', context='./src/frontend', dockerfile='./src/frontend/Dockerfile')  
+    docker_build('store-frontend', context='./src/store/frontend', dockerfile='./src/store/frontend/Dockerfile')  
     # Specify the Kubernetes manifest for the Frontend deployment
-    k8s_yaml('./local-cicd-manifests/frontend.yml')
+    k8s_yaml('./local-cicd-manifests/store-frontend.yml')
     # Assign port
-    k8s_resource('frontend', port_forwards='8082:80', resource_deps=['db-deployment','bff'], labels="web")
+    k8s_resource('store-frontend', port_forwards='8082:80', resource_deps=['bff-web-inventory'], labels="web")
 
 # Function to build and deploy:pgAdmin service
 def pgadmin_service():
     # Build from Dockerfile
-    docker_build('pgadmin', context='./src/pgadmin', dockerfile='./src/pgadmin/Dockerfile')
+    docker_build('pgadmin', context='./local-utilities/pgadmin/', dockerfile='./local-utilities/pgadmin/Dockerfile')
     # Specify the Kubernetes manifest for the pgAdmin deployment
     k8s_yaml('./local-cicd-manifests/pgadmin.yml')
     # Assign port
     k8s_resource('pgadmin', port_forwards='8083:80', resource_deps=['frontend'], labels="utility")
 
 
+
+
 create_namespace_service()
-db_service()
-db_change_management_service()
-bff_service()
-api_service()
-frontend_service()
-# pgadmin_service()
+marketing_db_service()
+marketing_db_change_management_service()
+store_db_service()
+store_db_change_management_service()
+bff_web_blog_service()
+bff_web_inventory_service()
+store_frontend_service()
+pgadmin_service()
