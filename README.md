@@ -90,8 +90,8 @@ https://tilt.dev
 ```
 
 ### API Mapping: ###
-http://my.domain.com/1f7351128682/v1/ad6b8f65 = GET bff/bookcontroller/listbooks
-http://my.domain.com/7d5375538789/v1/be6d8e56 = GET api/bookcontroller/listbooks
+http://my.domain.com/7d5375538789/v1/be6d8e56 = GET marketing/bff-blog/blogcontroller/listblogs
+http://my.domain.com/1f7351128682/v1/ad6b8f65 = GET store/bff-inventory/bookcontroller/listbooks
 
 ### Local CICD ###
 http://localhost:8081/7d5375538789/v1/be6d8e56 = GET marketing/bff-blog/blogcontroller/listblogs
