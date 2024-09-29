@@ -100,3 +100,13 @@ http://localhost:8080/1f7351128682/v1/ad6b8f65 = GET store/bff-inventory/bookcon
 ### VM Console ###
 http://localhost:8091/7d5375538789/v1/be6d8e56 = GET marketing/bff-blog/blogcontroller/listblogs
 http://localhost:8090/1f7351128682/v1/ad6b8f65 = GET store/bff-inventory/bookcontroller/listbooks
+
+
+|--Product_Name
+|--.git
+|--cicd
+|--deploy-iac
+|--platform_name
+|--local-manifests
+|--local-utilities
+|--tiltfile

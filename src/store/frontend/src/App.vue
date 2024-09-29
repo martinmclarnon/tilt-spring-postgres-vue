@@ -16,7 +16,7 @@ const BOOKS_BASE_URL = process.env.VUE_APP_BASE_URL;
 const BOOKS_ENDPOINT = process.env.VUE_APP_BOOKS_ENDPOINT;
 const booklist = `${BOOKS_BASE_URL}${BOOKS_ENDPOINT}`;
 
-console.log(BOOKS_ENDPOINT);
+console.log(booklist);
 
 export default {
   name: 'App',

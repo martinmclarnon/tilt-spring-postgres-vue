@@ -7,7 +7,7 @@ import com.example.api.service.BookService
 @RestController
 class BookController(val bookService: BookService) {
 
-    @CrossOrigin(origins = ["http://localhost:8082"])
+    @CrossOrigin(origins = ["http://localhost:8083"])
     @GetMapping(
         value = ["/v1/ad6b8f65"],
         produces = ["application/json"]

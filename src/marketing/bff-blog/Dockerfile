@@ -1,16 +1,28 @@
-FROM gradle:jdk17 as gradleimage
+# Step 1: Use a Gradle image to build the application
+FROM gradle:8.0-jdk17 AS builder
 
-COPY . /home/gradle/source
-WORKDIR /home/gradle/source
-RUN gradle build
-
-FROM amazoncorretto:17-alpine-jdk
-
-#ENV SPRING_DATASOURCE_USERNAME     # hydrated at deployment via manifest
-#ENV SPRING_DATASOURCE_PASSWORD     # hydrated at deployment via manifest
-#ENV SPRING_DATASOURCE_URL          # hydrated at deployment via manifest
-
-COPY --from=gradleimage /home/gradle/source/build/libs/api-0.0.1-SNAPSHOT.jar /app/app.jar
+# Set the working directory in the container
 WORKDIR /app
-EXPOSE 8443
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Copy the Gradle configuration and source code
+COPY build.gradle.kts settings.gradle.kts gradlew /app/
+COPY gradle /app/gradle
+COPY src /app/src
+
+# Build the application
+RUN gradle clean build --no-daemon
+
+# Step 2: Use a minimal JDK image to run the application
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the JAR file from the builder stage to the final image
+COPY --from=builder /app/build/libs/bff-blog-0.0.1-SNAPSHOT.jar /app/app.jar
+
+# Expose port 8080 to the outside world
+EXPOSE 8081
+
+# Run the Spring Boot application
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

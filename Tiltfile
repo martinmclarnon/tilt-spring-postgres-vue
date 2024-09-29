@@ -47,7 +47,7 @@ def bff_web_blog_service():
     # Specify the Kubernetes manifest for the API deployment
     k8s_yaml('./local-cicd-manifests/bff-web-blog.yml')
     # Assign port
-    k8s_resource('bff-web-blog', port_forwards='8081:8091', resource_deps=['marketing-db'], labels="service")
+    k8s_resource('bff-web-blog', port_forwards=['8081:8081','5005:5005'], resource_deps=['marketing-db'], labels="service", trigger_mode=TRIGGER_MODE_MANUAL)
 
 # Function to build and deploy:API service
 def bff_web_inventory_service():
@@ -56,7 +56,7 @@ def bff_web_inventory_service():
     # Specify the Kubernetes manifest for the API deployment
     k8s_yaml('./local-cicd-manifests/bff-web-inventory.yml')
     # Assign port
-    k8s_resource('bff-web-inventory', port_forwards='8080:8090', resource_deps=['store-db'], labels="service")
+    k8s_resource('bff-web-inventory', port_forwards=['8082:8082','5006:5006'], resource_deps=['store-db'], labels="service", trigger_mode=TRIGGER_MODE_MANUAL)
 
 # # Function to build and deploy: Frontend service
 def store_frontend_service():
@@ -65,19 +65,16 @@ def store_frontend_service():
     # Specify the Kubernetes manifest for the Frontend deployment
     k8s_yaml('./local-cicd-manifests/store-frontend.yml')
     # Assign port
-    k8s_resource('store-frontend', port_forwards='8082:80', resource_deps=['bff-web-inventory'], labels="web")
+    k8s_resource('store-frontend', port_forwards='8083:80', resource_deps=['bff-web-inventory'], labels="web")
 
 # Function to build and deploy:pgAdmin service
 def pgadmin_service():
     # Build from Dockerfile
-    docker_build('pgadmin', context='./local-utilities/pgadmin/', dockerfile='./local-utilities/pgadmin/Dockerfile')
+    # docker_build('pgadmin', context='./local-utilities/pgadmin/', dockerfile='./local-utilities/pgadmin/Dockerfile')
     # Specify the Kubernetes manifest for the pgAdmin deployment
     k8s_yaml('./local-cicd-manifests/pgadmin.yml')
     # Assign port
-    k8s_resource('pgadmin', port_forwards='8083:80', resource_deps=['frontend'], labels="utility")
-
-
-
+    k8s_resource('pgadmin', port_forwards='8084:80', resource_deps=['frontend'], labels="utility")
 
 create_namespace_service()
 marketing_db_service()

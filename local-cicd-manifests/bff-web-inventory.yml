@@ -17,7 +17,7 @@ spec:
         - name: bff-web-inventory-container
           image: bff-web-inventory:latest
           ports:
-            - containerPort: 8091
+            - containerPort: 8082
           resources:
             limits:
               cpu: "300m" # 1000m = 1 CPU core
@@ -26,12 +26,38 @@ spec:
               cpu: "150m"  # 0.75 CPU cores
               memory: "128Mi"  # 256 megabytes, 512 megabytes, 768 megabytes, 1024 megabytes 
           env:
+            - name: JAVA_TOOL_OPTIONS
+              value: "-Xdebug -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006"
+            - name: SERVER_PORT
+              value: "8082"
+            - name: SERVER_SERVLET_CONTEXTPATH
+              value: "/n86e5252c4bve2egkraw"
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://store-db:5433/store"
             - name: SPRING_DATASOURCE_USERNAME
               value: "dbusername"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "dbpassword"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "none"
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              value: "org.postgresql.Driver"
+                
+
+#                - name: SPRING_DATASOURCE_URL
+#                value: "jdbc:postgresql://<DB_HOST>:<DB_PORT>/<DB_NAME>"
+#              - name: SPRING_DATASOURCE_USERNAME
+#                value: "<DB_USERNAME>"
+#              - name: SPRING_DATASOURCE_PASSWORD
+#                value: "<DB_PASSWORD>"
+#              - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+#                value: "update" # or any other configuration you want
+#              - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+#                value: "org.postgresql.Driver"
+
+
+
+
 ---
 apiVersion: v1
 kind: Service
@@ -43,5 +69,5 @@ spec:
     app: bff-web-inventory
   ports:
     - protocol: TCP
-      port: 8081
-      targetPort: 8091
+      port: 8082
+      targetPort: 8082
